@@ -133,53 +133,7 @@ VALUES ('1234567-9', 'Camila', 'Vergara Plaza', '1977-09-10', 'ventas')
 INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion) 
 VALUES ('22345678-9', 'Juan', 'González Pérez', '1999-05-19', 'ventas')
 ;
--- 10 venedores mas
-INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
-VALUES ('23345678-0', 'Rodrigo', 'Pérez González', '1990-06-15', 'ventas', 510000)
-;
-INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
-VALUES ('18458209-6', 'Ignacio', 'Morales Veas', '1992-03-17', 'jefatura', 520000)
-;
-INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
-VALUES ('10876543-9', 'Luis', 'González Pérez', '1990-07-22', 'administracion', 530000)
-;
-INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
-VALUES ('1254567-2', 'Pedro', 'Pérez Pereira', '1998-02-15', 'ventas', 643000)
-;
-INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
-VALUES ('22745668-1', 'Karola', 'Ortiz Vergara', '1980-05-27', 'ventas', 750000)
-;
-INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
-VALUES ('8778432-6', 'Jackson', 'Pérez González', '1967-05-22', 'jefatura', 890000)
-;
-INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
-VALUES ('8954321-2', 'Francisca', 'González González', '1967-03-10', 'marketing', 650000)
-;
-INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
-VALUES ('19543989-4', 'Alvara', 'Flores Guerra', '1985-12-11', 'marketing', 760000)
-;
-INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
-VALUES ('1234598-9', 'Camilo', 'Plaza Plaza', '1970-09-10', 'ventas', 890334)
-;
-INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
-VALUES ('22545678-0', 'Ricardo', 'Plaza Pérez', '1998-05-12', 'ventas', 19540345)
-;
 
--- 5 vendedores mas
-INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
-VALUES ('22367678-0', 'Ricardo', 'Molina Molina', '1990-10-23', 'ventas', 510000)
-;
-INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
-VALUES ('23498206-0', 'David', 'Beckham Rodriguez', '1990-02-17', 'jefatura', 520000)
-;
-INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
-VALUES ('19845543-0', 'WisinYandel', 'González Pérez', '1995-05-22', 'administracion', 5130000)
-;
-INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
-VALUES ('11098567-0', 'Eustakio', 'Londra Rauli', '1992-03-15', 'ventas', 530000)
-;
-INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
-VALUES ('22746678-0', 'Carola', 'Altamirano Vergara', '1993-05-27', 'ventas', 5140000)
 ;
 
 -- TABLA CLIENTE INFO: 
@@ -203,8 +157,8 @@ INSERT INTO cliente ( codigo, nombres, apellidos, telefono, direccion, comuna, c
 VALUES ( '0000009', 'Paola Flor','Amada del Rio' , 568978564545,'calle fuego 1343','Olmue',' delRio@gmail.com',now());
 INSERT INTO cliente ( codigo, nombres, apellidos, telefono, direccion, comuna, correo_electronico, fecha_registro)
 VALUES ( '0000010', 'Paolo ','Zarate Navarrete' , 56980809765,' rocas grande 230','Llay.llay',' zarate@gmail.com',now());
--- RAMA SIMON IMPORTANTE SUBIR PRIMERO YA QUE AGREGA LAS COLUMNAS NUEVAS
 
+-- RAMA SIMON IMPORTANTE SUBIR PRIMERO YA QUE AGREGA LAS COLUMNAS NUEVAS (ejercicio grupl 02)
 -- CREACION DE COLUMNAS NUEVAS
 ALTER TABLE cliente
 ADD COLUMN Total_Pagado INT NOT NULL DEFAULT '0';
@@ -334,18 +288,63 @@ VALUES ( '0000024', 'Felipe Antonio ','Morales Canelo' , 56977694340,'las heras 
 INSERT INTO cliente ( codigo, nombres, apellidos, telefono, direccion, comuna, correo_electronico, fecha_registro, total_pagado)
 VALUES ( '0000025', 'Samuel Reno ',' Canelo Morales' , 56910232341,'mermelada mora 432','Olmue', 'samuRenoB@gmail.com',now(), 98.900);
 
--- EJERCICIO GRUPAL 03 - MODULO 03
+-- 10 venedores mas
+INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
+VALUES ('23345678-0', 'Rodrigo', 'Pérez González', '1990-06-15', 'ventas', 510000)
+;
+INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
+VALUES ('18458209-6', 'Ignacio', 'Morales Veas', '1992-03-17', 'jefatura', 520000)
+;
+INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
+VALUES ('10876543-9', 'Luis', 'González Pérez', '1990-07-22', 'administracion', 530000)
+;
+INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
+VALUES ('1254567-2', 'Pedro', 'Pérez Pereira', '1998-02-15', 'ventas', 643000)
+;
+INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
+VALUES ('22745668-1', 'Karola', 'Ortiz Vergara', '1980-05-27', 'ventas', 750000)
+;
+INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
+VALUES ('8778432-6', 'Jackson', 'Pérez González', '1967-05-22', 'jefatura', 890000)
+;
+INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
+VALUES ('8954321-2', 'Francisca', 'González González', '1967-03-10', 'marketing', 650000)
+;
+INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
+VALUES ('19543989-4', 'Alvara', 'Flores Guerra', '1985-12-11', 'marketing', 760000)
+;
+INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
+VALUES ('1234598-9', 'Camilo', 'Plaza Plaza', '1970-09-10', 'ventas', 890334)
+;
+INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
+VALUES ('22545678-0', 'Ricardo', 'Plaza Pérez', '1998-05-12', 'ventas', 19540345)
 
+-- EJERCICIO GRUPAL 03 - MODULO 03
 -- A) 5 VENDORES NUEVOS MAURICIO
+INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
+VALUES ('22367678-0', 'Ricardo', 'Molina Molina', '1990-10-23', 'ventas', 510000)
+;
+INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
+VALUES ('23498206-0', 'David', 'Beckham Rodriguez', '1990-02-17', 'jefatura', 520000)
+;
+INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
+VALUES ('19845543-0', 'WisinYandel', 'González Pérez', '1995-05-22', 'administracion', 5130000)
+;
+INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
+VALUES ('11098567-0', 'Eustakio', 'Londra Rauli', '1992-03-15', 'ventas', 530000)
+;
+INSERT INTO Vendedor (run, nombre, apellidos, fecha_nacimiento, seccion, salario) 
+VALUES ('22746678-0', 'Carola', 'Altamirano Vergara', '1993-05-27', 'ventas', 5140000)
+;
 
 -- B) 5 CLIENTES NUEVOS ARACILY
-
 insert into cliente (codigo, nombres, apellidos, telefono, direccion, comuna, correo_electronico, fecha_registro, Total_Pagado)
 values ('0000026', 'Jorge Alberto', 'Zamora Roco', 56870906767, 'manpato 98', 'Quilpue','jorgeqhotmail.com', now(), 200.000),
 ('0000027', 'Amada de Jesus', 'Rosales Rosales', 9567316405, 'san francisco 86', 'Quillota','amadaqhotmail.com', now(), 250.000),
 ('0000028', 'Victor Hugo', 'Zapata Matus',95634543454, 'reyes martin 2345', 'Quilpue','vichu@hotmail.com', now(), 170.000 ),
 ('0000029', 'Sonia Gla', 'Rosales Navarro', 95687785643, 'la conquista 3321', 'Petorca','glas@hotmail.com', now(), 230.000 ),
 ('0000030', 'Guillermo felipe','Ayala Garcia',9562343243, 'Nos de mali  78','Lay-llay','guille@hotmail.com',now(), 380.000);
+
 -- C) 5 PRODUCTOS NUEVOS RICARDO 
 INSERT INTO producto (SKU, nombre, categoria, productor, cantidad_en_stock, Precio) 
 VALUES 	('39568', 'Silla Gamer Wanku V2 Black/Red', 'Sillas Gamer', 'Gear Gamer', '25', '79990'),
@@ -355,19 +354,19 @@ VALUES 	('39568', 'Silla Gamer Wanku V2 Black/Red', 'Sillas Gamer', 'Gear Gamer'
 		('37645', 'Silla Gamer ROG Chariot (RGB)', 'Sillas Gamer', 'Asus', '4', '404990');
  
 /* MANIPULACION DE DATOS
-D. Identifique cual es el salario mínimo entre vendedores.
+D) Identifique cual es el salario mínimo entre vendedores.
 SELECT RUN, MIN(SALARIO) SALARIO_MINIMO
 FROM VENDEDOR
 GROUP BY RUN
 ORDER BY SALARIO_MINIMO ASC;
 
-E. Identifique cual es el salario máximo entre vendedores.
+E) Identifique cual es el salario máximo entre vendedores.
 SELECT RUN, MAX(SALARIO) SALARIO_MAXIMO
 FROM VENDEDOR
 GROUP BY RUN
 ORDER BY SALARIO_MAXIMO ASC;
 
-F. Súmele el salario mínimo identificado al salario de todos los vendedores.
+F) Súmele el salario mínimo identificado al salario de todos los vendedores.
 SELECT RUN, SALARIO + SUBQUERY.SALARIO_MINIMO AS SALARIO_TOTAL
 FROM VENDEDOR
 JOIN (
@@ -404,22 +403,22 @@ SET nombre =
     END
 WHERE SKU IN ('14853', '20906', '21504');
 
-J. Actualice los datos de tres vendedores.
+J) Actualice los datos de tres vendedores.
 UPDATE VENDEDOR SET NOMBRE = 'Ramazzoti' WHERE RUN = '19845543-0';
 UPDATE VENDEDOR SET APELLIDOS = 'Ali Balenciaga' WHERE RUN = '11098567-0';
 UPDATE VENDEDOR SET NOMBRE = 'Brayatan' WHERE RUN = '22746678-0';
 
- K) Actualice los datos de 1 cliente.
+K) Actualice los datos de 1 cliente.
 update cliente 
 set nombres = 'Magda', apellidos = 'Leal Montecino', telefono=56976545463, direccion ='los alerces 57', Total_Pagado = 355.000
 where codigo = '0000001';
 
-L. Seleccione el nombre y el apellido de los vendedores que tienen un salario superior al promedio.
+L) Seleccione el nombre y el apellido de los vendedores que tienen un salario superior al promedio.
 SELECT NOMBRE, APELLIDOS
 FROM VENDEDOR
 WHERE SALARIO > (SELECT AVG(SALARIO) FROM VENDEDOR);
 
- M) Indique cuál es el cliente con mayor gasto.
+M) Indique cuál es el cliente con mayor gasto.
 select codigo, nombres, MAX(Total_Pagado) from cliente;
 */
 
