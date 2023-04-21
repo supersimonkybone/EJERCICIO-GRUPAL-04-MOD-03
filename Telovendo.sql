@@ -353,9 +353,7 @@ VALUES 	('39568', 'Silla Gamer Wanku V2 Black/Red', 'Sillas Gamer', 'Gear Gamer'
 		('39574', 'Silla Gamer Beigman V2 Black/Orange', 'Sillas Gamer', 'Gear Gamer', '5', '142990'),
 		('37644', 'Silla Gamer ROG Chariot Core', 'Sillas Gamer', 'Asus', '12', '345990'),
 		('37645', 'Silla Gamer ROG Chariot (RGB)', 'Sillas Gamer', 'Asus', '4', '404990');
-        
-
-
+ 
 /* MANIPULACION DE DATOS
 D. Identifique cual es el salario mínimo entre vendedores.
 SELECT RUN, MIN(SALARIO) SALARIO_MINIMO
@@ -387,7 +385,7 @@ H) Cree una tabla que contenga solo los clientes que han pagado más que el prom
 select codigo, nombres, apellidos ,Total_Pagado from cliente
 where Total_Pagado > (select avg(Total_Pagado) from cliente) ;
 
--- I) ACTUALIZAMOS DATOS DE 3 PRODUCTOS:
+I) ACTUALIZAMOS DATOS DE 3 PRODUCTOS:
 UPDATE Producto
 SET nombre = 
     CASE 
@@ -426,3 +424,30 @@ select codigo, nombres, MAX(Total_Pagado) from cliente;
 */
 
 -- EJERCICIO 04 - MODULO 03
+-- CREACION DE TABLA Y ENLACE A LA TABLA CLIENTES
+
+CREATE TABLE Cuentas (
+  codigo INT NOT NULL,
+  saldo BIGINT DEFAULT 0,
+  PRIMARY KEY (codigo),
+  FOREIGN KEY (codigo) REFERENCES cliente(id)
+);
+-- TRANSACCION PARA CADA TRANSFERENCIA CON VALIDACION
+
+DECLARE transferencia INT DEFAULT 0;
+DECLARE codigo_origen  ;
+DECLARE codigo_destino  ;
+
+SET transferencia = 100;
+SET codigo_origen = 001;
+SET codigo_destino = 002;
+
+START TRANSACTION;
+IF saldo >= transferencia THEN
+UPDATE Cuentas SET saldo = saldo - transferencia WHERE codigo = codigo_origen AND saldo >= transferencia;
+UPDATE Cuentas SET saldo = saldo + transferencia WHERE codigo = codigo_destino;
+ELSE
+    SELECT 'Alerta, no dispone de saldo suficiente';
+    ROLLBACK;
+END IF;
+COMMIT;
