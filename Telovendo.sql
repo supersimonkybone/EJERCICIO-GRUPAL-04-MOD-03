@@ -425,28 +425,81 @@ select codigo, nombres, MAX(Total_Pagado) from cliente;
 -- EJERCICIO 04 - MODULO 03
 -- CREACION DE TABLA Y ENLACE A LA TABLA CLIENTES
 
-CREATE TABLE Cuentas (
-  codigo INT NOT NULL,
-  saldo BIGINT DEFAULT 0,
-  PRIMARY KEY (codigo),
-  FOREIGN KEY (codigo) REFERENCES cliente(id)
+CREATE TABLE Cuenta (
+  codigo VARCHAR(20) NOT NULL,
+  saldo INT UNSIGNED DEFAULT 0,
+  FOREIGN KEY (codigo) REFERENCES cliente(codigo)
 );
--- TRANSACCION PARA CADA TRANSFERENCIA CON VALIDACION
 
-DECLARE transferencia INT DEFAULT 0;
-DECLARE codigo_origen  ;
-DECLARE codigo_destino  ;
+INSERT INTO Cuenta (codigo) 
+SELECT codigo FROM cliente;
 
-SET transferencia = 100;
-SET codigo_origen = 001;
-SET codigo_destino = 002;
-
+-- SUPONGAMOS EL CLIENTE CON EL CÓDIGO 0000001, LLAMADO "A", TIENE 1000 TLV COINS DE SALDO, 
+-- LOS USUARIOS B, C Y D (CON LOS CÓDIGOS 0000002, 0000003 Y 0000004 RESPECTIVAMENTE)
+-- TIENEN OTROS SALDOS, PARA ESTO:
+	UPDATE Cuenta
+	SET saldo =
+	CASE codigo
+	WHEN '0000001' THEN 1000
+	WHEN '0000002' THEN 600
+	WHEN '0000003' THEN 700
+    WHEN '0000004' THEN 500
+	ELSE saldo
+	END
+    WHERE codigo IN ('0000001', '0000002', '0000003', '0000004');
+    
+-- Transferencia de 200 monedas (TLV) desde A a B
 START TRANSACTION;
-IF saldo >= transferencia THEN
-UPDATE Cuentas SET saldo = saldo - transferencia WHERE codigo = codigo_origen AND saldo >= transferencia;
-UPDATE Cuentas SET saldo = saldo + transferencia WHERE codigo = codigo_destino;
-ELSE
-    SELECT 'Alerta, no dispone de saldo suficiente';
-    ROLLBACK;
-END IF;
+SELECT saldo FROM Cuenta WHERE codigo = '0000001' FOR UPDATE;
+UPDATE Cuenta SET saldo = IF(saldo >= 200, saldo - 200, saldo) WHERE codigo = '0000001';
+SELECT saldo FROM Cuenta WHERE codigo = '0000002' FOR UPDATE;
+UPDATE Cuenta SET saldo = saldo + 200 WHERE codigo = '0000002';
 COMMIT;
+
+-- Transferencia de 150 monedas (TLV) desde B a C
+START TRANSACTION;
+SELECT saldo FROM Cuenta WHERE codigo = '0000002' FOR UPDATE;
+UPDATE Cuenta SET saldo = IF(saldo >= 150, saldo - 150, saldo) WHERE codigo = '0000002';
+SELECT saldo FROM Cuenta WHERE codigo = '0000003' FOR UPDATE;
+UPDATE Cuenta SET saldo = saldo + 150 WHERE codigo = '0000003';
+COMMIT;
+
+-- Transferencia de 500 monedas (TLV) desde C a D
+START TRANSACTION;
+SELECT saldo FROM Cuenta WHERE codigo = '0000003' FOR UPDATE;
+UPDATE Cuenta SET saldo = IF(saldo >= 500, saldo - 500, saldo) WHERE codigo = '0000003';
+SELECT saldo FROM Cuenta WHERE codigo = '0000004' FOR UPDATE;
+UPDATE Cuenta SET saldo = saldo + 500 WHERE codigo = '0000004';
+COMMIT;
+
+-- Transferencia de 200 monedas (TLV) desde D a A
+START TRANSACTION;
+SELECT saldo FROM Cuenta WHERE codigo = '0000004' FOR UPDATE;
+UPDATE Cuenta SET saldo = IF(saldo >= 200, saldo - 200, saldo) WHERE codigo = '0000004';
+SELECT saldo FROM Cuenta WHERE codigo = '0000001' FOR UPDATE;
+UPDATE Cuenta SET saldo = saldo + 200 WHERE codigo = '0000001';
+COMMIT;
+
+-- Deshacer la transacción de A a B
+START TRANSACTION;
+SELECT saldo FROM Cuenta WHERE codigo = '0000001' FOR UPDATE;
+UPDATE Cuenta SET saldo = IF(saldo >= 200, saldo - 200, saldo) WHERE codigo = '0000001';
+SELECT saldo FROM Cuenta WHERE codigo = '0000002' FOR UPDATE;
+UPDATE Cuenta SET saldo = saldo + 200 WHERE codigo = '0000002';
+ROLLBACK;
+
+-- Deshacer la transacción de B a C
+START TRANSACTION;
+SELECT saldo FROM Cuenta WHERE codigo = '0000002' FOR UPDATE;
+UPDATE Cuenta SET saldo = IF(saldo >= 150, saldo - 150, saldo) WHERE codigo = '0000002';
+SELECT saldo FROM Cuenta WHERE codigo = '0000003' FOR UPDATE;
+UPDATE Cuenta SET saldo = saldo + 150 WHERE codigo = '0000003';
+COMMIT;
+
+-- select * from cuenta; 
+-- DROP TABLE Cuenta;
+-- ALTER TABLE cuenta DROP COLUMN nombres, DROP COLUMN apellidos;
+
+
+
+
