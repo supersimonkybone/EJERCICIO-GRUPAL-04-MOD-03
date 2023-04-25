@@ -214,47 +214,6 @@ VALUES ('47921', 'Smartphone Galaxy S23 Ultra 512GB/12GB 5G Misty Lilac', 'CELUL
 INSERT INTO producto (SKU, nombre, categoria, productor, cantidad_en_stock, Precio) 
 VALUES ('43014', 'Smartphone Redmi 9C 32GB/2GB Gris Wom', 'CELULARES', 'Xiaomi', '18', '84990');
 
--- Productos nuevos (pendientes del ejercicio 02) Alvaro:
-INSERT INTO Producto (SKU, nombre, categoria, productor, cantidad_en_stock) 
-VALUES ('P-001', 'Auriculares Inalámbricos Sony WH-1000XM4', 'Auriculares', 'Sony', 50);
-INSERT INTO Producto (SKU, nombre, categoria, productor, cantidad_en_stock) 
-VALUES ('P-002', 'Auriculares Inalámbricos Bose QuietComfort 35 II', 'Auriculares', 'Bose', 25);
-INSERT INTO Producto (SKU, nombre, categoria, productor, cantidad_en_stock) 
-VALUES ('P-003', 'Auriculares Inalámbricos Jabra Elite 85h', 'Auriculares', 'Jabra', 30);
-INSERT INTO Producto (SKU, nombre, categoria, productor, cantidad_en_stock) 
-VALUES ('P-004', 'Auriculares Inalámbricos Sennheiser Momentum 3', 'Auriculares', 'Sennheiser', 20);
-INSERT INTO Producto (SKU, nombre, categoria, productor, cantidad_en_stock) 
-VALUES ('P-005', 'Auriculares Inalámbricos Apple AirPods Pro', 'Auriculares', 'Apple', 40);
-INSERT INTO Producto (SKU, nombre, categoria, productor, cantidad_en_stock) 
-VALUES ('P-006', 'Auriculares Inalámbricos Samsung Galaxy Buds Pro', 'Auriculares', 'Samsung', 35);
-INSERT INTO Producto (SKU, nombre, categoria, productor, cantidad_en_stock) 
-VALUES ('P-007', 'Auriculares con Cable Audio-Technica ATH-M50x', 'Auriculares', 'Audio-Technica', 15);
-INSERT INTO Producto (SKU, nombre, categoria, productor, cantidad_en_stock) 
-VALUES ('P-008', 'Auriculares con Cable Beyerdynamic DT 990 Pro', 'Auriculares', 'Beyerdynamic', 10);
-INSERT INTO Producto (SKU, nombre, categoria, productor, cantidad_en_stock) 
-VALUES ('P-009', 'Auriculares con Cable AKG K371', 'Auriculares', 'AKG', 20);
-INSERT INTO Producto (SKU, nombre, categoria, productor, cantidad_en_stock) 
-VALUES ('P-010', 'Auriculares con Cable Shure SRH840', 'Auriculares', 'Shure', 18);
-INSERT INTO Producto (SKU, nombre, categoria, productor, cantidad_en_stock) 
-VALUES ('P-011', 'Auriculares Inalámbricos JBL Quantum 800', 'Auriculares', 'JBL', 30);
-INSERT INTO Producto (SKU, nombre, categoria, productor, cantidad_en_stock) 
-VALUES ('P-012', 'Auriculares Inalámbricos Anker Soundcore Life Q35', 'Auriculares', 'Anker', 25);
-INSERT INTO Producto (SKU, nombre, categoria, productor, cantidad_en_stock) 
-VALUES ('P-013', 'Auriculares Inalámbricos Huawei FreeBuds 4i', 'Auriculares', 'Huawei', 40);
-INSERT INTO Producto (SKU, nombre, categoria, productor, cantidad_en_stock) 
-VALUES ('P-014', 'Auriculares Inalámbricos Razer Hammerhead True Wireless Pro', 'Auriculares', 'Razer', 20);
-INSERT INTO Producto (SKU, nombre, categoria, productor, cantidad_en_stock) 
-VALUES ('P-015', 'Auriculares Inalámbricos JLab JBuds Air Sport', 'Auriculares', 'JLab', 15);
-INSERT INTO Producto (SKU, nombre, categoria, productor, cantidad_en_stock) 
-VALUES ('P-016', 'Auriculares con Cable Grado Labs SR80e', 'Auriculares', 'Grado Labs', 10);
-INSERT INTO Producto (SKU, nombre, categoria, productor, cantidad_en_stock) 
-VALUES ('P-017', 'Auriculares con Cable Philips SHP9500', 'Auriculares', 'Philips', 20);
-INSERT INTO Producto (SKU, nombre, categoria, productor, cantidad_en_stock) 
-VALUES ('P-018', 'Auriculares con Cable Beyerdynamic DT 770 Pro', 'Auriculares', 'Beyerdynamic', 30);
-INSERT INTO Producto (SKU, nombre, categoria, productor, cantidad_en_stock) 
-VALUES ('P-019', 'Auriculares con Cable Audio-Technica ATH-AD700X', 'Auriculares', 'Audio-Technica', 12);
-INSERT INTO Producto (SKU, nombre, categoria, productor, cantidad_en_stock) 
-VALUES ('P-020', 'Auriculares con Cable Sennheiser HD 600', 'Auriculares', 'Sennheiser', 18);
 
 -- E) CREACION DE NUEVOS CLIENTES 
 INSERT INTO cliente ( codigo, nombres, apellidos, telefono, direccion, comuna, correo_electronico, fecha_registro, Total_Pagado)
@@ -359,13 +318,11 @@ SELECT RUN, MIN(SALARIO) SALARIO_MINIMO
 FROM VENDEDOR
 GROUP BY RUN
 ORDER BY SALARIO_MINIMO ASC;
-
 E) Identifique cual es el salario máximo entre vendedores.
 SELECT RUN, MAX(SALARIO) SALARIO_MAXIMO
 FROM VENDEDOR
 GROUP BY RUN
 ORDER BY SALARIO_MAXIMO ASC;
-
 F) Súmele el salario mínimo identificado al salario de todos los vendedores.
 SELECT RUN, SALARIO + SUBQUERY.SALARIO_MINIMO AS SALARIO_TOTAL
 FROM VENDEDOR
@@ -374,16 +331,13 @@ JOIN (
   FROM VENDEDOR
   GROUP BY RUN
 ) AS SUBQUERY ON VENDEDOR.RUN = SUBQUERY.RUN;
-
 G)
 UPDATE producto
 SET cantidad_en_stock = 0
 WHERE precio = (SELECT MAX(precio) FROM producto);
-
 H) Cree una tabla que contenga solo los clientes que han pagado más que el promedio.
 select codigo, nombres, apellidos ,Total_Pagado from cliente
 where Total_Pagado > (select avg(Total_Pagado) from cliente) ;
-
 I) ACTUALIZAMOS DATOS DE 3 PRODUCTOS:
 UPDATE Producto
 SET nombre = 
@@ -402,22 +356,18 @@ SET nombre =
         ELSE precio
     END
 WHERE SKU IN ('14853', '20906', '21504');
-
 J) Actualice los datos de tres vendedores.
 UPDATE VENDEDOR SET NOMBRE = 'Ramazzoti' WHERE RUN = '19845543-0';
 UPDATE VENDEDOR SET APELLIDOS = 'Ali Balenciaga' WHERE RUN = '11098567-0';
 UPDATE VENDEDOR SET NOMBRE = 'Brayatan' WHERE RUN = '22746678-0';
-
 K) Actualice los datos de 1 cliente.
 update cliente 
 set nombres = 'Magda', apellidos = 'Leal Montecino', telefono=56976545463, direccion ='los alerces 57', Total_Pagado = 355.000
 where codigo = '0000001';
-
 L) Seleccione el nombre y el apellido de los vendedores que tienen un salario superior al promedio.
 SELECT NOMBRE, APELLIDOS
 FROM VENDEDOR
 WHERE SALARIO > (SELECT AVG(SALARIO) FROM VENDEDOR);
-
 M) Indique cuál es el cliente con mayor gasto.
 select codigo, nombres, MAX(Total_Pagado) from cliente;
 */
@@ -426,27 +376,43 @@ select codigo, nombres, MAX(Total_Pagado) from cliente;
 -- CREACION DE TABLA Y ENLACE A LA TABLA CLIENTES
 
 CREATE TABLE Cuentas (
-  codigo INT NOT NULL,
-  saldo BIGINT DEFAULT 0,
+  codigo VARCHAR(20) NOT NULL UNIQUE,
+  saldo INT DEFAULT 0,
   PRIMARY KEY (codigo),
-  FOREIGN KEY (codigo) REFERENCES cliente(id)
+  FOREIGN KEY (codigo) REFERENCES cliente (codigo)
 );
+-- CARGA DE DATOS
+
+INSERT INTO Cuentas (codigo, saldo) VALUES ('0000001', '8500');
+INSERT INTO Cuentas (codigo, saldo)	VALUES ('0000002', '4400');
+INSERT INTO Cuentas (codigo, saldo) VALUES ('0000003', '7700');
+INSERT INTO Cuentas (codigo, saldo) VALUES ('0000004', '8890');
+INSERT INTO Cuentas (codigo, saldo) VALUES ('0000005', '2400');
+INSERT INTO Cuentas (codigo, saldo) VALUES ('0000006', '8700');
+INSERT INTO Cuentas (codigo, saldo) VALUES ('0000007', '1200');
+INSERT INTO Cuentas (codigo, saldo) VALUES ('0000008', '9900');
+
 -- TRANSACCION PARA CADA TRANSFERENCIA CON VALIDACION
-
-DECLARE transferencia INT DEFAULT 0;
-DECLARE codigo_origen  ;
-DECLARE codigo_destino  ;
-
-SET transferencia = 100;
-SET codigo_origen = 001;
-SET codigo_destino = 002;
-
 START TRANSACTION;
-IF saldo >= transferencia THEN
-UPDATE Cuentas SET saldo = saldo - transferencia WHERE codigo = codigo_origen AND saldo >= transferencia;
-UPDATE Cuentas SET saldo = saldo + transferencia WHERE codigo = codigo_destino;
+
+-- Seleccionar el saldo actual de la cuenta de origen y de destino
+SELECT saldo INTO @saldo_origen FROM cuentas WHERE cliente = 'cliente_origen';
+SELECT saldo INTO @saldo_destino FROM cuentas WHERE cliente = 'cliente_destino';
+
+-- Verificar que la cuenta de origen tenga suficiente saldo
+IF @saldo_origen >= cantidad_a_transferir THEN
+    -- Actualizar los saldos de la cuenta de origen y de destino
+    UPDATE cuentas SET saldo = @saldo_origen - cantidad_a_transferir WHERE cliente = 'cliente_origen';
+    UPDATE cuentas SET saldo = @saldo_destino + cantidad_a_transferir WHERE cliente = 'cliente_destino';
+    -- Confirmar la transacción
+    COMMIT;
 ELSE
-    SELECT 'Alerta, no dispone de saldo suficiente';
+    -- Si no hay suficiente saldo en la cuenta de origen, cancelar la transacción
+    ALERT 'Sin Saldo Suficiente para transferir'
     ROLLBACK;
 END IF;
-COMMIT;
+-- DEFINICION DE LOS EJERCICIOS
+
+-- SET transferencia = 100;
+-- SET codigo_origen = 001;
+-- SET codigo_destino = 002;
